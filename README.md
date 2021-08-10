@@ -23,4 +23,9 @@ import static com.github.softassertions.SoftAssertions.isNotNull;
  
 And then you can write `if (isNotNull(myVar)) {...}` anywhere that you'd like to safely assert for example that your variable named myVar is not null. When executed, a log message will be printed and `isNotNull(myVar)` returns false if myVar is null. Otherwise `isNotNull(myVar)` evaluates to true and the logic in the if statement's block is executed.
 
-The idea is that often times as developers we believe that one of our variables is not null and safe to access. Nevertheless, being Java code, pretty much any variable can hypotherically be null, especially in negative use-case scenarios. When this happens our code crashes with a NullPointerException unless we wrap our code in some form of `if` statement that first checks for null prior to de-referencing. The SoftAssertions library intends to help ease the burden in these types of scenarios. See the `SoftAssertions` class for all of the available soft assertions and related helper methods.
+The idea is that often times as developers we believe that one of our variables is not null and safe to access. Nevertheless, being Java code, pretty much any variable can hypotherically be null, especially in negative use-case scenarios. When this happens our code crashes with a NullPointerException unless we wrap our code in some form of `if` statement that first checks for null prior to de-referencing. The SoftAssertions library intends to help ease the burden in these types of scenarios. See the `SoftAssertions` class for all of the available soft assertions and related helper methods, such as help with:
+
+* Null Pointer Checking: `if (isNotNull(myVar)) { ... }` and `withNotNull(getMyVar(), myVar -> { ... } )`
+* Array Out of Bounds Checking: `if (hasIndex(myArray)) { ... }` and 'withIndex(myArray, index, value -> { ... });
+* Safe array looping, even if the array is null or has null items: `forEach(myArray, (index, value) -> { ... });` or `forEach(myArray, value -> { ... })`
+* Safe type checking prior to type casting: `if (isExpectedType(myVar, MyType.class)) { ... }` and `withExpectedType(myVar, MyType.class, v -> { ... })`
