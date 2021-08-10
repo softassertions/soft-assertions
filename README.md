@@ -44,4 +44,4 @@ void yourStartupLogicThatYourApplicationPresumablyCallsAtStartup() {
 }
 ```
 
-Not Typical but Known Issue: Be careful, for example, on Android if your app uses multiple processes any one call to `SoftAssertions.setLogger(...)` only assigns the logger in the process in which the code is executing. If you have an activity or service, for example, whereby you declare in the manifest that the activity or service executes in its own separate process, then you'll need to perform the call to `SoftAssertions.setLogger(...)` in that special activity or service's `onCreate(...)` logic.
+Not Typical but Known Issue: Be careful, for example, on Android if your app uses multiple processes any one call to `SoftAssertions.setLogger(...)` only assigns the logger in the process in which the code is executing. If you have an activity or service, for example, whereby you declare in the manifest that the activity or service executes in its own separate process, then you'll need to perform the call to `SoftAssertions.setLogger(...)` early in that special activity or service's `onCreate(...)` logic.
