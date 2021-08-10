@@ -29,3 +29,19 @@ The idea is that often times as developers we believe that one of our variables 
 * Array Out of Bounds Checking: `if (hasIndex(myArray)) { ... }` and `withIndex(myArray, index, value -> { ... });`
 * Safe array looping, even if the array is null or has null items: `forEach(myArray, (index, value) -> { ... });` or `forEach(myArray, value -> { ... })`
 * Safe type checking prior to type casting: `if (isExpectedType(myVar, MyType.class)) { ... }` and `withExpectedType(myVar, MyType.class, v -> { ... })`
+
+## Static Initialization (Optional)
+Out-of-the-box the SoftAssertions library simply prints to stderr and either returns false or skips the given callback whenever an assertion fails. You can plug in your own logger from somewhere early in your code's startup logic:
+
+```
+import com.github.softassertions.SoftAssertions;
+
+import static com.your.chosen.logger.LoggerClass.Log;
+...
+
+void yourStartupLogicThatYourApplicationPresumablyCallsAtStartup() {
+   SoftAssertions.setLogger( (msg, t) -> {Log.e(LOG_TAG, msg, t);});
+}
+```
+
+Not Typical but Known Issue: Be careful, for example, on Android if your app uses multiple processes any one call to `SoftAssertions.setLogger(...)` only assigns the logger in the process in which the code is executing. If you have an activity or service, for example, whereby you declare in the manifest that the activity or service executes in its on separate process, then you'll need to perform the call to `SoftAssertions.setLogger(...)` in that special activity or service's `onCreate(...)` logic.
