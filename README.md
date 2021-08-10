@@ -29,7 +29,7 @@ The idea is that often times as developers we believe that one of our variables 
 * Null Pointer Checking: `if (isNotNull(myVar)) { ... }` and `withNotNull(getMyVar(), myVar -> { ... } )`
 * Array Out of Bounds Checking: `if (hasIndex(myArray)) { ... }` and `withIndex(myArray, index, value -> { ... });`
 * Safe array looping, even if the array is null or has null items: `forEach(myArray, (index, value) -> { ... });` or `forEach(myArray, value -> { ... })`
-* Safe type checking prior to type casting: `if (isExpectedType(myVar, MyType.class)) { ... }` and `withExpectedType(myVar, MyType.class, v -> { ... })`
+* Safe type checking prior to type casting: `if (isExpectedType(myVar, MyType.class)) { myVarOfType = (MyType)var; ... }` and `withExpectedType(myVar, MyType.class, v -> { ... })`
 
 ## Static Initialization (Optional)
 Out-of-the-box the SoftAssertions library simply prints to stderr and either returns false or skips the given callback whenever an assertion fails. You can plug in your own logger from somewhere early in your code's startup logic:
