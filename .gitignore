@@ -1,0 +1,10 @@
+*.class
+build/
+.idea/
+.gradle
+
+*.jar
+*.aar
+*.war
+!gradle-wrapper.jar
+local.properties
