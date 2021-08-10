@@ -8,8 +8,9 @@ To install the library in your code, simply add the following to your build.grad
  
    ```gradle
    repositories { 
-        jcenter()
+        ...
         maven { url "https://jitpack.io" }
+        ...
    }
    dependencies {
          implementation 'com.github.softassertions:soft-assertions:1.0.0'
